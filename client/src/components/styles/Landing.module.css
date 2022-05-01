@@ -1,0 +1,25 @@
+.enter{
+    position: fixed;
+    bottom: 40%;
+    right: 20%;
+    text-decoration: none;
+}
+.p{
+    background-color: rgb(255, 68, 0);
+    font-size: 20px;
+    width: 180px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: 1s;
+    box-shadow: 0 0 0 0 black inset;
+}
+.p:hover{
+    box-shadow: 95px 0px 0 0 black inset, -95px 0px 0 0 black inset;
+    font-size: 25px;
+}
+.image{
+    top:200px;
+}

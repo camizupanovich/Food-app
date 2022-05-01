@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color:rgba(255, 68, 0, 0.694);
+    padding: 3%;
+    position: fixed;
+    top:10%;
+    left: 5%;
+    bottom: 10%;
+}
+.btn{
+    width: 120px;
+    background-color:rgba(255, 68, 0, 0.694);
+    color: white;
+    border: 0px;
+    padding: 5px;
+    font-size: 15px;
+}
+.btn:hover{
+    background-color: rgb(75, 20, 0);
+}

@@ -1,0 +1,7 @@
+.wallpaper{
+    background-image: url('./resources/app_background.jpg');
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: repeat-y;
+}
