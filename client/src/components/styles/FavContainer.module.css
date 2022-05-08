@@ -1,0 +1,44 @@
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 80px;
+    margin-left: 5%;
+    width: 200px;
+    background-color: rgba(168, 168, 168, 0.678);
+    padding: 2%;
+}
+.title{
+    height: 40px;
+    font-size: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 150px;
+    border: 1px solid white;
+    margin-top: 5%;
+    font-weight: bolder;
+}
+.btn{
+    font-size: 30px;
+    background-color: transparent;
+    font-weight: lighter;
+    color:rgb(255, 255, 255) ;
+    border: none;
+    top:34px;
+}
+.btn:hover{
+    color: rgba(0, 0, 0, 0.712);
+}
+.btnPrev{
+    position: absolute;
+    left: 17px;
+}
+.btnNext{
+    position: absolute;
+    right: 17px;
+}

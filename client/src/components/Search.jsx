@@ -1,9 +1,13 @@
 import React from "react";
-export default function Search(){
+
+export default function Search({searchTitle,handleSearch}){
     return(
         <>
-        <form>
-            <input type='text' placeholder="Search"/>
+        <form onSubmit={searchTitle}>
+            <input 
+            type='text' 
+            placeholder="Search"
+            onChange={handleSearch}/>
             <input type='submit' value='🔍︎'/>
         </form>
         </>

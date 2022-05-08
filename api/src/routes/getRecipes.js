@@ -21,8 +21,7 @@ route.get('/', async(req,res)=>{
             res.status(200).send(recipes)
         }
     }catch(error){
-        console.log('error in route get recipes or a title of recipe',error)
-        return res.status(404).json(error)
+        return res.status(400).send({message: 'Requests are over, try to access later!'})
     }
 });
 
@@ -39,7 +38,19 @@ route.get('/:id',async(req,res)=>{
                     }
                 }
             });
-            return dbInfo? res.status(200).json(dbInfo) : res.status(400).send('recipe not found');
+            let dataBd = await dbInfo;
+            let normalized = {
+                id: dataBd.id,
+                title: dataBd.title,
+                score: dataBd.score,
+                healthScore: dataBd.healthScore,
+                summary: dataBd.summary,
+                steps: dataBd.steps,
+                diets: dataBd.diets.map((d)=>d.name),
+                image: dataBd.image,
+                createInDb: dataBd.createInDb
+            }
+            return normalized? res.status(200).send(normalized) : res.status(400).send({message:'Recipe not found'});
         }else{
             let apiInfo;
             try{
@@ -56,14 +67,14 @@ route.get('/:id',async(req,res)=>{
                     time: data.readyInMinutes,
                     dishType:data.dishTypes
                 }
-            }catch(error){
-                console.log('error in detailApi',error)
+            }catch(error){ 
+                res.status(400).send({message:'Recipe not found'})
             }
-            return apiInfo? res.status(200).json(apiInfo):res.status(400).send('recipe not found');
+            return apiInfo? res.status(200).json(apiInfo):res.status(400).send({message: 'Requests are over, try to access later!'});
         }
     }
     catch(error){
-        console.log('error in detail promise',error)
+        return res.status(400).send({message: 'Requests are over, try to access later!'})
     }
 })
 

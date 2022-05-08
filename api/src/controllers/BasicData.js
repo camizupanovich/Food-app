@@ -1,4 +1,5 @@
 const axios = require('axios');
+const e = require('express');
 const {Recipe,Diet}=require('../db')
 const {API_KEY}= process.env;
 const URL = 'https://api.spoonacular.com/recipes';
@@ -30,12 +31,27 @@ const dbRecipes = async()=>{
         include:{
             model: Diet,
             attributes:['name'],
-            throught:{
+            through:{
                 attributes:[]
             }
-        }
+        },
     });
-    return dbInfo;
+    let normalizedData = [];
+    let responseDb = dbInfo;
+    responseDb.forEach((el)=>{
+        let normal ={
+            id: el.id,
+            title: el.title,
+            summary:el.summary,
+            score:el.score,
+            diets: el.diets.map((d)=>d.name),
+            steps:el.steps,
+            image: el.image,
+            createInDb: el.createInDb
+        };
+        normalizedData.push(normal);
+    });
+    return normalizedData;
 }
 //concateno todas las recetas
 const allRecipes = async()=>{

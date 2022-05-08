@@ -1,15 +1,15 @@
 import React from "react";
 import Search from "./Search";
 import Sort from "./Sort";
-import Pagination from './Pagination';
 import s from './styles/SecondNav.module.css';
 
-export default function SecondNav(){
+export default function SecondNav({handleSort,searchTitle,handleSearch}){
     return(
         <>
         <div className={s.first}>
-        <Search/>
-        <Sort/>
+        <Search searchTitle={searchTitle} handleSearch={handleSearch}/>
+        <div className={s.title}> Lets Cook !</div>
+        <Sort handleSort={handleSort}/>
         </div>
         </>
     )

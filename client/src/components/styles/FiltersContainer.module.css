@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color:rgba(255, 68, 0, 0.694);
+    background-color:rgba(168, 168, 168, 0.678);
     padding: 3%;
     position: fixed;
     top:10%;
@@ -11,12 +11,13 @@
 }
 .btn{
     width: 120px;
-    background-color:rgba(255, 68, 0, 0.694);
+    background-color:rgba(255, 68, 0);
     color: white;
     border: 0px;
     padding: 5px;
     font-size: 15px;
+    transition: 1s;
 }
 .btn:hover{
-    background-color: rgb(75, 20, 0);
+    background-color:rgb(0, 0, 46);
 }

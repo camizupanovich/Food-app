@@ -1,0 +1,54 @@
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 68, 0, 0.331);
+    width: 150px;
+    height: 200px;
+    margin-top: 7%;
+}
+.remove{
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: rgba(255, 255, 255, 0.591);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.remove:hover{
+    background-color: rgba(0, 0, 0, 0.628);
+    color: white;
+}
+.img{
+    width: 150px;
+    height: 100px;
+}
+.title{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.806);
+    font-size: 13px;
+    width: 150px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.detail{
+    text-decoration: none;
+    color: rgb(255,68,0);
+    background-color: rgba(255, 255, 255, 0.918);
+    font-weight: bolder;
+    height: 30px;
+    width: 150px;
+    transition: 1s;
+}
+.detail:hover{
+    background-color: rgb(255,68,0);
+    color: white;
+
+}

@@ -10,8 +10,8 @@ import s from './App.module.css'
 function App() {
   return (
     <BrowserRouter>
-        <Route path='/' component={NavBar}/>
     <div className={s.wallpaper}>
+        <Route path='/' component={NavBar}/>
       <Switch>
         <Route exact path='/' component={Landing}/>
         <Route exact path='/recipes' component={Home}/>

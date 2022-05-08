@@ -2,7 +2,14 @@ import axios from 'axios';
 export const actions = {
     GET_RECIPES:'GET_RECIPES',
     GET_TYPES: 'GET_TYPES',
-    BY_TYPE: 'BY_TYPE'
+    BY_TYPE: 'BY_TYPE',
+    BY_SORT: 'BY_SORT',
+    SEARCH_TITLE: 'SEARCH_TITLE',
+    MY_RECIPES: 'MY_RECIPES',
+    GET_DETAIL: 'GET_DETAIL',
+    ADD_FAVORITE: 'ADD_FAVORITE',
+    REMOVE_FAVORITE: 'REMOVE_FAVORITE',
+    POST_RECIPE: 'POST_RECIPE'
 }
 
 export function getRecipes(){
@@ -30,4 +37,47 @@ export function filterByType(payload){
         type: actions.BY_TYPE,
         payload,
     })
+}
+export function bySort(payload){
+    return ({
+        type: actions.BY_SORT,
+        payload,
+    });
+}
+export function getTitle(payload){
+    return({
+        type: actions.SEARCH_TITLE,
+        payload,
+    });
+}
+export function getDetail(id){
+    return async(dispatch)=>{
+        let info = await axios.get(`http://localhost:3001/recipes/${id}`);
+        return dispatch({
+            type: actions.GET_DETAIL,
+            payload: info.data
+        })
+    }
+}
+export function addFavoriteRecipe(payload){
+    return({
+        type:actions.ADD_FAVORITE,
+        payload
+    })
+}
+export function removeFavoriteRecipe(payload){
+    return({
+        type:actions.REMOVE_FAVORITE,
+        payload
+    })
+}
+export function postRecipe(input){
+    return async(dispatch)=>{
+        const jsonResponse = await axios.post('http://localhost:3001/recipe', input);
+        input.id = jsonResponse.data.id;
+        return dispatch({
+            type: actions.POST_RECIPE,
+            payload: [input, jsonResponse.data.message]
+        })
+    }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import NotFound from "./NotFound";
 import SingleCard from "./SingleCard";
 import s from './styles/CardsContainer.module.css';
 
@@ -9,6 +10,7 @@ export default function CardsContainer({recipes}){
         return(
             <SingleCard 
             key={r.id} 
+            id={r.id}
             image={r.image}
             title={r.title}
             score={r.score}
