@@ -1,5 +1,5 @@
 import React from "react";
-import s from './styles/ErrorFavList.module.css'
+import s from '../../styles/ErrorFavList.module.css'
 
 export default function ErrorFavList(){
     return(

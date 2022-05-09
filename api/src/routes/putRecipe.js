@@ -13,7 +13,7 @@ route.put('/:id',async(req,res)=>{
             id,
         }
     });
-    res.send(200).json({message: 'Recipe updated successfully'})
+    res.status(200).json({message: 'Recipe updated successfully'})
     }catch(error){
         console.log('error in putRecipe', error)
     }

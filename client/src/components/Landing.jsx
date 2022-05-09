@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 import s from './styles/Landing.module.css';
-import img from '../resources/img_landing.png'
+import img from '../resources/img_landing.png';
 
 export default function Landing(){
     return(

@@ -3,10 +3,10 @@ import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { postRecipe } from "../redux/actions";
 import s from './styles/Create.module.css';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 export default function Create(){
-    const message = useSelector((state)=> state.message)
+    const defaultImage = 'https://static.vecteezy.com/system/resources/previews/003/594/976/original/one-continuous-line-drawing-of-young-handsome-male-chef-opening-cloche-tray-to-serve-main-dish-to-customer-at-hotel-restaurant-excellent-service-concept-single-line-draw-design-illustration-vector.jpg'
     const diets = useSelector((state)=>state.types)
     const [input,setInput]=useState({
         title:'',
@@ -52,7 +52,7 @@ export default function Create(){
                 }
                 break
             case 'image':
-                if(!/^(ftp|http|https):\/\/[^ "]+$/.test(entry.image)){
+                if(!/[(http(s)?):\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ig.test(entry.image)){
                     error.image = 'The image must be a validate url'
                 }
                 break
@@ -103,6 +103,11 @@ export default function Create(){
             ...input,
             diets:filtereds
         });
+        setErrors(
+            validate({
+                ...input, [e.target.name]: e.target.value
+            },e)
+        );
     }
 
     const handleChekInfo = (errors)=>{
@@ -110,10 +115,18 @@ export default function Create(){
     }
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSubmit = (input,e)=>{
         e.preventDefault();
+        //imagen por default
+        if(input.image.length<10){
+            input.image=defaultImage
+        }
         dispatch(postRecipe(input));
+        setTimeout(()=>{
+            history.push('/recipes')
+        },1500)
     }
 
     return(
@@ -137,7 +150,7 @@ export default function Create(){
              
             {input.image!==''? 
                (<img src={input.image} alt='new recipe' width='270px'/>) :
-               (<img src='https://static.vecteezy.com/system/resources/previews/003/594/976/original/one-continuous-line-drawing-of-young-handsome-male-chef-opening-cloche-tray-to-serve-main-dish-to-customer-at-hotel-restaurant-excellent-service-concept-single-line-draw-design-illustration-vector.jpg'  alt='new recipe' width='270px'/>)}
+               (<img src={defaultImage}  alt='new recipe' width='270px'/>)}
                <hr/>
             
             <label className={s.label}>
@@ -226,12 +239,6 @@ export default function Create(){
             </div>
 
         </form>
-        {message && 
-        <div>
-            <span>{message.message}</span>
-            <Link to='/recipes'><button>Home</button></Link>
-            <Link to='/create'><button>Create</button></Link>
-        </div>}
         </div>
     )
 }

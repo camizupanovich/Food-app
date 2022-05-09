@@ -14,10 +14,10 @@
     align-items: center;
     color: white;
     transition: 1s;
-    box-shadow: 0 0 0 0 black inset;
+    box-shadow: 0 0 0 0 rgb(0,0,46) inset;
 }
 .p:hover{
-    box-shadow: 95px 0px 0 0 black inset, -95px 0px 0 0 black inset;
+    box-shadow: 95px 0px 0 0 rgb(0,0,46) inset, -95px 0px 0 0 rgb(0,0,46)  inset;
     font-size: 25px;
 }
 .image{

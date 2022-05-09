@@ -16,3 +16,44 @@
     color: rgb(0, 0, 46);
     text-shadow: 2px 1px rgb(255, 68, 0);
 }
+.searchContainer{
+    width: 250px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+}
+.input{
+    overflow: none;
+    outline: none;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.678);
+    height: 25px;
+}
+.input:hover{
+    border-bottom: 2px solid rgb(255, 68, 0);
+    height: 23px;
+}
+.btn{
+    background-color: rgb(255, 68, 0);
+    height: 100%;
+    font-size: 17px;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+.inputSelect{
+    overflow: none;
+    outline: none;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.678);
+    height: 25px;
+    width: 120px;
+}
+.sort{
+    font-size: 15px;
+    width: 70px;
+    font-weight: lighter;
+    display: flex;
+    justify-content: center;
+}

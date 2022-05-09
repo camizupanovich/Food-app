@@ -7,7 +7,8 @@ export default function Pagination({recipes,recipesPerPage,handlePaginate}){
         totalPages.push(i);
     }
     return(
-        <div className={s.container}>
+        <div className={s.lastContainer}>
+            <div className={s.container}>
             {
                 totalPages?.map(index =>(
                     <button 
@@ -17,6 +18,10 @@ export default function Pagination({recipes,recipesPerPage,handlePaginate}){
                     >{index}</button>
                 ))
             }
+            </div>
+            <div className={s.publish}>》 》 YOU CAN VISIT 
+            <a className={s.link} href="https://www.linkedin.com/in/camila-antonela-florencia-zupanovich/">THIS LINK</a>
+             FOR MORE RECIPES 《 《</div>
         </div>
     )
 }

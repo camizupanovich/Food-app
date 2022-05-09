@@ -3,7 +3,7 @@ const express = require('express');
 const route = express.Router();
 require('dotenv').config();
 
-const allRecipes = require('../controllers/BasicData');
+const {allRecipes,capitalizeFirstLetter } = require('../controllers/BasicData');
 const {API_KEY}= process.env;
 const URL = 'https://api.spoonacular.com/recipes';
 const {Recipe,Diet} = require('../db')
@@ -16,12 +16,12 @@ route.get('/', async(req,res)=>{
             let recipeMatcher = await recipes.filter((e)=>
             e.title.toLowerCase().includes(title.toLowerCase()));
             if(recipeMatcher.length) return res.status(200).send(recipeMatcher);
-            return res.status(404).send('Recipe Not Found')
+            return res.status(404).send({message:'Recipe Not Found'})
         }else{
             res.status(200).send(recipes)
         }
     }catch(error){
-        return res.status(400).send({message: 'Requests are over, try to access later!'})
+        return res.send({message: 'Requests are over, try to access later!'})
     }
 });
 
@@ -41,7 +41,7 @@ route.get('/:id',async(req,res)=>{
             let dataBd = await dbInfo;
             let normalized = {
                 id: dataBd.id,
-                title: dataBd.title,
+                title: capitalizeFirstLetter(dataBd.title),
                 score: dataBd.score,
                 healthScore: dataBd.healthScore,
                 summary: dataBd.summary,
@@ -50,7 +50,7 @@ route.get('/:id',async(req,res)=>{
                 image: dataBd.image,
                 createInDb: dataBd.createInDb
             }
-            return normalized? res.status(200).send(normalized) : res.status(400).send({message:'Recipe not found'});
+            return normalized? res.status(200).send(normalized) : res.status(400).send('recipe not found');
         }else{
             let apiInfo;
             try{
@@ -58,19 +58,19 @@ route.get('/:id',async(req,res)=>{
                 apiInfo ={
                     id:data.id,
                     title: data.title,
-                    summary: data.summary,
-                    score: data.spooonacularScore,
+                    summary: data.summary.replace(/<[^>]*>?/gm, ""),
+                    score: data.spoonacularScore,
                     healthScore: data.healthScore,
                     diets: data.diets,
                     image:data.image,
-                    steps: data.instructions,
+                    steps: data.instructions.replace(/<[^>]*>?/gm, ""),
                     time: data.readyInMinutes,
                     dishType:data.dishTypes
                 }
-            }catch(error){ 
-                res.status(400).send({message:'Recipe not found'})
+            }catch(error){
+                console.log('error in detailApi',error)
             }
-            return apiInfo? res.status(200).json(apiInfo):res.status(400).send({message: 'Requests are over, try to access later!'});
+            return apiInfo? res.status(200).json(apiInfo):res.status(400).send('recipe not found');
         }
     }
     catch(error){

@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import {useDispatch} from 'react-redux';
-import {filterByType} from '../redux/actions';
+import {filterByType} from '../../redux/actions';
 import Filters from "./Filters";
-import s from './styles/FiltersContainer.module.css';
+import s from '../styles/FiltersContainer.module.css';
 
 export default function FiltersContainer(){
     const types = useSelector((state)=> state.types)

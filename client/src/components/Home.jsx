@@ -2,13 +2,13 @@ import React, { useEffect,useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { getRecipes, getTypes,bySort,getTitle} from "../redux/actions";
 import CardsContainer from "./CardsContainer";
-import FiltersContainer from "./FiltersContainer";
+import FiltersContainer from "./Filters/FiltersContainer";
 import SecondNav from "./SecondNav";
 import Pagination from './Pagination';
 import s from './styles/Home.module.css';
 
 export default function Home(){
-    
+
     const [orden, setOrden] = useState('sort');
     const types = useSelector((state)=>state.types);
     const recipes = useSelector((state)=>state.recipes);
@@ -20,7 +20,8 @@ export default function Home(){
     let recipesPerPage = 9 ;
     const LastRecipe = page * recipesPerPage; //position[9] on current page
     const FirstRecipe = LastRecipe - recipesPerPage; //position[1] on current page
-    const currentPage = recipes.slice(FirstRecipe,LastRecipe); //array of 9 recipes  */
+    let currentPage;
+    if(recipes){currentPage = recipes.slice(FirstRecipe,LastRecipe)}; //array of 9 recipes  */
     
     const handlePaginate = (pageNumber) => {
        setPage(pageNumber);
@@ -40,6 +41,7 @@ export default function Home(){
         dispatch(getTypes());
     },[dispatch]);
 
+
     const handleSort = (e)=>{
        dispatch(bySort(e));
        setOrden(e);
@@ -52,12 +54,14 @@ export default function Home(){
         handleSearch={handleSearch}/>
         <div className={s.body}>
          <FiltersContainer />
-        <CardsContainer recipes={currentPage}/>
+         {currentPage &&
+        <CardsContainer recipes={currentPage}/>}
         </div>
+        {currentPage&&
         <Pagination 
         recipes={recipes.length} 
         recipesPerPage={recipesPerPage} 
-        handlePaginate={handlePaginate}/>
+        handlePaginate={handlePaginate}/>}
         </>
     )
 }

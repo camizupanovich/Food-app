@@ -4,6 +4,10 @@ const {Recipe,Diet}=require('../db')
 const {API_KEY}= process.env;
 const URL = 'https://api.spoonacular.com/recipes';
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase().concat(string.slice(1))
+}
+
 //llamado a la api para buscar todas las recetas
 
 const apiRecipes = async()=>{
@@ -41,7 +45,7 @@ const dbRecipes = async()=>{
     responseDb.forEach((el)=>{
         let normal ={
             id: el.id,
-            title: el.title,
+            title: capitalizeFirstLetter(el.title),
             summary:el.summary,
             score:el.score,
             diets: el.diets.map((d)=>d.name),
@@ -61,4 +65,4 @@ const allRecipes = async()=>{
     return resAllRecipes;
 }
 
-module.exports= allRecipes
+module.exports= {allRecipes,capitalizeFirstLetter}

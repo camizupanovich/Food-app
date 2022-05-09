@@ -1,7 +1,9 @@
+//extern modules
 import React from "react";
 import {useDispatch} from 'react-redux';
-import {filterByType} from '../redux/actions';
-import s from './styles/Filters.module.css';
+//intern modules
+import {filterByType} from '../../redux/actions';
+import s from '../styles/Filters.module.css';
 
 export default function Filters({id,name}){
     const dispatch = useDispatch();

@@ -1,8 +1,10 @@
+//extern modules
 import React from "react";
 import { useState } from "react";
+//intern modules
 import ErrorFavList from "./ErrorFavList";
 import FavCard from "./FavCard";
-import s from './styles/FavContainer.module.css';
+import s from '../../styles/FavContainer.module.css';
 
 export default function FavContainer({favRecipes}){
         //paginado

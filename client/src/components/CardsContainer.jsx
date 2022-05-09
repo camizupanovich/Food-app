@@ -1,5 +1,4 @@
 import React from "react";
-import NotFound from "./NotFound";
 import SingleCard from "./SingleCard";
 import s from './styles/CardsContainer.module.css';
 

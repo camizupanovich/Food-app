@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { removeFavoriteRecipe } from "../redux/actions";
-import s from './styles/FavCard.module.css';
+import { removeFavoriteRecipe } from "../../../redux/actions";
+import s from '../../styles/FavCard.module.css';
 
 export default function FavCard({id,title,image}){
     const dispatch = useDispatch();

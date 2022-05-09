@@ -19,7 +19,7 @@ route.post('/', async(req,res)=>{
         newRecipe.addDiet(types);
         return res.json({message:'Recipe created successfully'})
     }catch(error){
-        res.status(400).send('error at post your recipe',error)
+        res.status(404).send(error)
     }
 });
 

@@ -6,7 +6,6 @@ const initialState = {
     recipes:[], 
     detailRecipe:{},
     favRecipes:[],
-    message:{},
 }
 export default function rootReducer( state=initialState,action){
     switch(action.type){
@@ -87,7 +86,7 @@ export default function rootReducer( state=initialState,action){
                   recipes: sortedRecipe,
                   allRecipes: sortedRecipe,
                   ...state
-                };
+                };/* 
           case actions.SEARCH_TITLE:
             let filteredByTitle = [];
             state.allRecipes.forEach(t=>{
@@ -98,7 +97,13 @@ export default function rootReducer( state=initialState,action){
             return{
               ...state,
               recipes: filteredByTitle
+            } */
+          case actions.SEARCH_TITLE:{
+            return{
+              ...state,
+              recipes: action.payload
             }
+          }
           case actions.GET_DETAIL:
             return{
               ...state,
@@ -124,13 +129,34 @@ export default function rootReducer( state=initialState,action){
                 favRecipes: updateFav
               }
           case actions.POST_RECIPE:
-            let prevPosted = state.myRecipes;
-            prevPosted.push(action.payload[0]);
             return{
               ...state,
-              myRecipes: prevPosted,
-              message: action.payload[1]
-            }    
+            }
+          case actions.MY_RECIPES:{
+            return{
+              ...state,
+              myRecipes: state.allRecipes.filter((recipe)=>{
+                return recipe.createInDb === true
+              })
+            }
+          }
+         /*  case actions.UPDATE_RECIPE:{
+            let remaining = state.allRecipes.filter((e)=>e.id!== action.payload[0]);
+            remaining.push(action.payload[1]);
+            return{
+              ...state,
+              allRecipes: remaining,
+              recipes: remaining
+            }
+          } */
+          case actions.DELETE_RECIPE:
+            return{
+              ...state
+            }
+          case actions.UPDATE_RECIPE:
+            return{
+              ...state,
+            }
         default:
             return state;
     }

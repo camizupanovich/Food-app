@@ -5,13 +5,15 @@ export const actions = {
     BY_TYPE: 'BY_TYPE',
     BY_SORT: 'BY_SORT',
     SEARCH_TITLE: 'SEARCH_TITLE',
-    MY_RECIPES: 'MY_RECIPES',
     GET_DETAIL: 'GET_DETAIL',
     ADD_FAVORITE: 'ADD_FAVORITE',
     REMOVE_FAVORITE: 'REMOVE_FAVORITE',
-    POST_RECIPE: 'POST_RECIPE'
+    POST_RECIPE: 'POST_RECIPE',
+    MY_RECIPES: 'MY_RECIPES',
+    UPDATE_RECIPE: 'UPDATE_RECIPE',
+    DELETE_RECIPE:'DELETE_RECIPE'
 }
-
+/* 
 export function getRecipes(){
     return async function (dispatch){
         var json = await axios.get('http://localhost:3001/recipes',{});
@@ -20,8 +22,20 @@ export function getRecipes(){
             payload: json.data
         });
     }
-};
-
+}; */
+export function getRecipes(){
+    return async function(dispatch){
+        try{
+            var json = await axios.get('http://localhost:3001/recipes',{});
+            return dispatch({
+                type: actions.GET_RECIPES,
+                payload: json.data
+            })
+        }catch(error){
+            alert(json.data.message) 
+        }
+    }
+}
 export function getTypes(){
     return async function (dispatch){
         var diets = await axios.get('http://localhost:3001/types',{});
@@ -44,11 +58,25 @@ export function bySort(payload){
         payload,
     });
 }
+/* 
 export function getTitle(payload){
     return({
         type: actions.SEARCH_TITLE,
         payload,
     });
+} */
+export function getTitle(title){
+    return async(dispatch)=>{
+        try{
+            var titleMatched = await axios.get(`http://localhost:3001/recipes?title=${title}`,{});
+            return dispatch({
+                type: actions.SEARCH_TITLE,
+                payload: titleMatched.data
+            })
+        }catch(error){
+            alert('RECIPE NOT FOUND')
+        }
+    }
 }
 export function getDetail(id){
     return async(dispatch)=>{
@@ -73,11 +101,36 @@ export function removeFavoriteRecipe(payload){
 }
 export function postRecipe(input){
     return async(dispatch)=>{
-        const jsonResponse = await axios.post('http://localhost:3001/recipe', input);
-        input.id = jsonResponse.data.id;
-        return dispatch({
+        const responsePost = await axios.post('http://localhost:3001/recipe', input);
+        input.id = responsePost.data.id;
+        dispatch({
             type: actions.POST_RECIPE,
-            payload: [input, jsonResponse.data.message]
+            payload: input
         })
+        alert(responsePost.data.message)
+    }
+}
+export function getMyRecipes(){
+    return({
+        type: actions.MY_RECIPES
+    })
+}
+export function updateRecipe(id,updateInfo){
+    return async(dispatch)=>{
+        const responseUpdate = await axios.put(`http://localhost:3001/edit/${id}`,updateInfo);
+        dispatch({
+            type: actions.UPDATE_RECIPE,
+            payload:[id,updateInfo]
+        })
+        alert(responseUpdate.data.message)
+    }
+}
+export function deleteRecipe(id){
+    return async(dispatch)=>{
+        const responseDelete = await axios.delete(`http://localhost:3001/delete/${id}`);
+        dispatch({
+            type:actions.DELETE_RECIPE,
+        })
+        alert(responseDelete.data.message)
     }
 }
