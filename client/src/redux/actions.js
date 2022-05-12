@@ -120,7 +120,6 @@ export function updateRecipe(id,updateInfo){
         const responseUpdate = await axios.put(`http://localhost:3001/edit/${id}`,updateInfo);
         dispatch({
             type: actions.UPDATE_RECIPE,
-            payload:[id,updateInfo]
         })
         alert(responseUpdate.data.message)
     }

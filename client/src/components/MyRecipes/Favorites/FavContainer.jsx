@@ -1,43 +1,30 @@
 //extern modules
 import React from "react";
 import { useState } from "react";
-//intern modules
+//internmodule
 import ErrorFavList from "./ErrorFavList";
 import FavCard from "./FavCard";
 import s from '../../styles/FavContainer.module.css';
 
 export default function FavContainer({favRecipes}){
         //paginado
-        const [page,setPage] = useState(1);
-        const [prev,setPrev] = useState(0);
-        const [next,setNext] = useState(1);
-        let recipesPerPage = 3 ;
-        const LastRecipe = page * recipesPerPage; //position[9] on current page
-        const FirstRecipe = LastRecipe - recipesPerPage; //position[1] on current page
-        const currentPage = favRecipes.slice(FirstRecipe,LastRecipe); //array of 9 recipes  */
-        let showLastPage = Math.ceil(favRecipes.length/recipesPerPage);
+        const [page,setPage] = useState(0);
+        const currentPage = favRecipes.slice(page,page+1); 
+
         const handlePrev = (e)=>{
-            if(favRecipes.length<1)setPrev(0);
-            if(page<2)setPrev(0);
-            else{setPage(page-1);
-            setPrev(1);
-            setNext(1)}
+            if(page>0)
+            setPage(page-1)
         }
         const handleNext = (e)=>{
-            if(favRecipes.length<1)setNext(0);
-            if(page===showLastPage){
-                return setNext(0);
-            }else{
-                setPage(page+1);
-                setPrev(1);
-                setNext(1);
-            }
+            if(page<favRecipes.length-1)
+            setPage(page +1)
         }
+        
     return(
         <div className={s.container}>
             <div className={s.title}>Wish List</div>
             {
-        currentPage.length < 1?
+        favRecipes.length < 1?
         ( <ErrorFavList/>
         ) :
         currentPage.map((r)=>{
@@ -50,15 +37,14 @@ export default function FavContainer({favRecipes}){
         )
     })
     }
-            {favRecipes.length > 4 && prev?
+            {page>0?
             <button 
             className={`${s.btn} ${s.btnPrev}`} 
-            onClick={handlePrev}>⟨</button> : 
-            null}
-            {favRecipes.length > 1 && next?
+            onClick={handlePrev}>⟨</button> : null }
+            <div>{page+1}</div>
+            {page< favRecipes.length-1?
             <button className={`${s.btn} ${s.btnNext}`} 
-            onClick={handleNext}>⟩</button> : 
-            null}
+            onClick={handleNext}>⟩</button> :null }
         </div>
     )
 }

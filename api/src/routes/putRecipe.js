@@ -7,8 +7,14 @@ const {Recipe, Diet} = require('../db');
 route.put('/:id',async(req,res)=>{
     try{
     let {id} = req.params;
-    let {title, summary, score, healthScore,steps,image} = req.body;
+    /* let {title, summary, score, healthScore,steps,image} = req.body;
     await Recipe.update({title, summary, score, healthScore,steps,image},{
+        where:{
+            id,
+        }
+    }); */
+    let {title} =req.body;
+    await Recipe.update({title},{
         where:{
             id,
         }

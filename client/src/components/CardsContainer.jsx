@@ -14,8 +14,7 @@ export default function CardsContainer({recipes}){
             title={r.title}
             score={r.score}
             diets={r.diets}/>
-        )
-    })}
+        )})}
         </div>
     )
 }

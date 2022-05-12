@@ -105,7 +105,7 @@ export default function Create(){
         });
         setErrors(
             validate({
-                ...input, [e.target.name]: e.target.value
+                ...input, [e.target.name]: filtereds
             },e)
         );
     }

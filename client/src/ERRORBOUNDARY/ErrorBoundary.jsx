@@ -1,4 +1,5 @@
-/* import React from "react";
+import React from "react";
+import img from '../resources/ErrorBoundary.png';
 
 export default class ErrorBoundary extends React.Component {
     constructor(props) {
@@ -11,14 +12,12 @@ export default class ErrorBoundary extends React.Component {
       return { hasError: true };
     }
   
-  
     render() {
       if (this.state.hasError) {
         // You can render any custom fallback UI
-        return <h1>Something went wrong.</h1>;
+        return <img src={img} alt='Something went wrong, try it later !'/>;
       }
   
       return this.props.children; 
     }
-  }
- */
+  } 

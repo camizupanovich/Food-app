@@ -1,7 +1,9 @@
 .container{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-left: 20%;
     margin-top: 3%;
+    min-height: 60vh;
 }

@@ -17,6 +17,6 @@
     padding-top: 12px;
     padding-bottom: 7px;
 }
-.link:hover{
+.link:focus{
     box-shadow: 0 -3px 0 rgb(255, 255, 255) inset;
 }

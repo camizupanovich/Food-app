@@ -6,6 +6,7 @@ import FiltersContainer from "./Filters/FiltersContainer";
 import SecondNav from "./SecondNav";
 import Pagination from './Pagination';
 import s from './styles/Home.module.css';
+import NotFound from './NotFound';
 
 export default function Home(){
 
@@ -41,11 +42,11 @@ export default function Home(){
         dispatch(getTypes());
     },[dispatch]);
 
-
     const handleSort = (e)=>{
        dispatch(bySort(e));
-       setOrden(e);
+       setOrden(`sort${e}`);
    }
+
     return(
         <> 
         <SecondNav 
@@ -54,8 +55,9 @@ export default function Home(){
         handleSearch={handleSearch}/>
         <div className={s.body}>
          <FiltersContainer />
-         {currentPage &&
+         {currentPage&&
         <CardsContainer recipes={currentPage}/>}
+        {!currentPage.length && <NotFound/>}
         </div>
         {currentPage&&
         <Pagination 

@@ -19,10 +19,13 @@
     border-radius: 50%;
 }
 .btn:hover{
+    background-color: rgba(0, 0, 45, 0.61);
+}
+.btn:focus{
     background-color: rgb(255,68,0);
 }
 .lastContainer{
-    height: 30vh;
+    height: 28vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end

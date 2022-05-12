@@ -20,7 +20,7 @@ export default function SecondNav({handleSort,searchTitle,handleSearch}){
                 value='🔍︎'/>
            </form>
 
-            <div className={s.title}> Lets Cook !</div>
+            <div className={s.title}> LETS COOK !</div>
 
             <div className={s.searchContainer}>
             <span  className={`${s.btn} ${s.sort}`}>SORT</span>
