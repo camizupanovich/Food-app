@@ -13,8 +13,8 @@ route.put('/:id',async(req,res)=>{
             id,
         }
     }); */
-    let {title} =req.body;
-    await Recipe.update({title},{
+    let {title,summary,image} =req.body;
+    await Recipe.update({title,image,summary},{
         where:{
             id,
         }

@@ -41,7 +41,7 @@ export default function FavContainer({favRecipes}){
             <button 
             className={`${s.btn} ${s.btnPrev}`} 
             onClick={handlePrev}>⟨</button> : null }
-            <div>{page+1}</div>
+            {/* <div>{page+1}</div> */}
             {page< favRecipes.length-1?
             <button className={`${s.btn} ${s.btnNext}`} 
             onClick={handleNext}>⟩</button> :null }

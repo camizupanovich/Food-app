@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { postRecipe } from "../redux/actions";
-import s from './styles/Create.module.css';
+import s from './styles/Form.module.css';
 import {useHistory} from 'react-router-dom';
 
 export default function Create(){

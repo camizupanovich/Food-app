@@ -45,6 +45,7 @@ export default function Home(){
     const handleSort = (e)=>{
        dispatch(bySort(e));
        setOrden(`sort${e}`);
+       setPage(1);
    }
 
     return(
