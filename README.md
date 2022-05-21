@@ -1,16 +1,13 @@
+Se me dio la posibilidad de crear funcionalidades extra en el proyecto, lo cual decidi aprovechar y agregar 2 rutas en el Back para poder editar y eliminar.
+Tambien decidi incorporar en el Front una Wish List para que los usuarios puedan tener un historial de las Recetas que les gustaron, en esta funcionalidad me inspire en Instagram. 
+No se me permitio usar librerias externas por lo que tuve que descartar la posibilidad de agregarle algunos detalles.
+En cuanto al utilizar una api externa que tiene un limite de llamados por dia le agregue un ERROR BOUNDARY para que la app muestre un mensaje adecuado al usuario,
+
+Abajo les muestro algunas vistas del proyecto, espero que les guste y algun feedback para seguir mejorando!
 
 ![foodApp-screenshot](https://user-images.githubusercontent.com/88290587/169666066-65ee3f57-66e7-450c-aa04-82a18638f992.png)
 
 
-<p align='left'>
-    <img src='https://static.wixstatic.com/media/85087f_0d84cbeaeb824fca8f7ff18d7c9eaafd~mv2.png/v1/fill/w_160,h_30,al_c,q_85,usm_0.66_1.00_0.01/Logo_completo_Color_1PNG.webp' </img>
-</p>
-
-# Individual Project - Henry Food
-
-<p align="right">
-  <img height="200" src="./cooking.png" />
-</p>
 
 ## Objetivos del Proyecto
 
@@ -23,44 +20,6 @@
 ## Horarios y Fechas
 
 El proyecto tendrá una duración máxima de tres semanas. En el caso de que completan todas las tareas antes de dicho lapso podrán avisar a su Instructor para coordinar una fecha de presentación del trabajo (DEMO).
-
-## Comenzando
-
- 1. Forkear el repositorio para tener una copia del mismo en sus cuentas
- 2. Clonar el repositorio en sus computadoras para comenzar a trabajar
-
-Tendrán un `boilerplate` con la estructura general tanto del servidor como de cliente.
-
-__IMPORTANTE:__ Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
-
-Actualmente las versiónes necesarias son:
-
- * __Node__: 12.18.3 o mayor
- * __NPM__: 6.14.16 o mayor
-
-Para verificar que versión tienen instalada:
-
-> node -v
->
-> npm -v
-
-## BoilerPlate
-
-El boilerplate cuenta con dos carpetas: `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
-
-En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
-
-```
-DB_USER=usuariodepostgres
-DB_PASSWORD=passwordDePostgres
-DB_HOST=localhost
-```
-
-Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
-
-Adicionalmente será necesario que creen desde psql una base de datos llamada `food`
-
-El contenido de `client` fue creado usando: Create React App.
 
 ## Enunciado
 
@@ -147,11 +106,6 @@ El modelo de la base de datos deberá tener las siguientes entidades (Aquellas p
   - ID
   - Nombre
 
-La relación entre ambas entidades debe ser de muchos a muchos ya que una receta puede ser parte de varios tipos de dieta en simultaneo y, a su vez, un tipo de dieta puede contener múltiples recetas distintas. Un ejemplo tomado de la API sería el `Strawberry Mango Green Tea Limeade` que es vegetariano, vegano y apto para celíacos, todo al mismo tiempo. Pero a su vez existen otras recetas para vegetarianos.
-
-__IMPORTANTE__: Pensar como modelar los IDs de las recetas en la base de datos. Existen distintas formas correctas de hacerlo pero tener en cuenta que cuando hagamos click en alguna receta, esta puede provenir de la API o de la Base de Datos por lo que cuando muestre su detalle no debería haber ambigüedad en cual se debería mostrar. Por ejemplo si en la API la receta `Strawberry Mango Green Tea Limeade` tiene id = 1 y en nuestra base de datos creamos una nueva receta `Medialunas de Manteca` con id = 1, ver la forma de diferenciarlas cuando querramos acceder al detalle de la misma.
-
-
 #### Backend
 
 Se debe desarrollar un servidor en Node/Express con las siguientes rutas:
@@ -171,9 +125,3 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 - [ ] __POST /recipe__:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
   - Crea una receta en la base de datos
-
-
-#### Testing
-- [ ] Al menos tener un componente del frontend con sus tests respectivos
-- [ ] Al menos tener una ruta del backend con sus tests respectivos
-- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
