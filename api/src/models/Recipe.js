@@ -26,10 +26,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    time:{
-      type: DataTypes.INTEGER,
-      allowNull:true,
-    },
     steps:{
       type: DataTypes.TEXT,
       allowNull:false,

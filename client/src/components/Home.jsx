@@ -18,7 +18,7 @@ export default function Home(){
 
     //paginado
     const [page,setPage] = useState(1);
-    let recipesPerPage = 9 ;
+    let recipesPerPage = 12 ;
     const LastRecipe = page * recipesPerPage; //position[9] on current page
     const FirstRecipe = LastRecipe - recipesPerPage; //position[1] on current page
     let currentPage;
